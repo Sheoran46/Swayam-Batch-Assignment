@@ -1,0 +1,31 @@
+class Solution {
+    public int minimumDeletions(int[] nums) {
+        if(nums.length<=2) return nums.length;
+        int mini=0;
+        int maxi=0;
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]<nums[mini]){
+                mini=i;
+            }
+            if(nums[i]>nums[maxi]){
+                maxi=i;
+            }
+        }
+      /*step1 : track the indices of smaller and larger elemnts of array
+        step2: we can delete elements sin three format:
+      from front both , from end bot, one from front and other from end
+      */
+        int result1=Math.max(mini, maxi)+1;
+        //int last1=nums.length-mini, last2=nums.length-maxi;
+        int result2=nums.length-Math.min(mini, maxi);
+        int result3=0;
+        if(mini<maxi){
+            result3+=mini+1;
+            result3+=(nums.length-maxi);
+        }else{
+            result3+=maxi+1;
+            result3+=(nums.length-mini);
+        }
+        return Math.min(result1, Math.min(result2, result3));
+    }
+}
