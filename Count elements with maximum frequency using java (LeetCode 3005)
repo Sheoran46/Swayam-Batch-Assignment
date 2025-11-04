@@ -1,0 +1,27 @@
+class Solution {
+    public int maxFrequencyElements(int[] nums) {
+        Arrays.sort(nums);
+        int maxi=0;
+        int total=0;
+        int curr=1;
+/* track the elements and do it using moore voting algorithms*/
+        for(int i=1;i<nums.length;i++){
+            if(nums[i]==nums[i-1])
+            curr++;
+            else{
+                if(curr==maxi)
+                total+=curr;
+                else if(maxi<curr){
+                    maxi=curr;
+                    total=curr;
+                }
+                curr=1;
+            }
+        }
+        if(curr==maxi)
+        total+=curr;
+        else if(maxi<curr)
+        total=curr;
+        return total;
+    }
+}
