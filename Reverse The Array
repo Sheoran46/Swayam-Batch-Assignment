@@ -1,0 +1,23 @@
+import java.util.* ;
+import java.io.*; 
+import java.util.ArrayList;
+
+public class Solution 
+{
+    public static void reverseArray(ArrayList<Integer> arr, int m)
+    {
+        /* check the validity of m and then reverse the last elements by swapping their values.*/
+        if(m>=arr.size())
+        return;
+        int steps=arr.size()-m-1;
+        steps=steps/2;
+        int j=0;
+        for(int i=m+1;i<arr.size() && steps>0;i++){
+            int temp=arr.get(i);
+            arr.set(i,arr.get(arr.size()-1-j));
+            arr.set(arr.size()-j-1,temp);
+            j++;
+            steps--;
+        }
+    }
+}
